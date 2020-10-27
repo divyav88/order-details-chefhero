@@ -4,8 +4,8 @@
   "description": "chefhero order details application",
   "main": "server.js",
   "scripts": {
-    "client-build": "npm run build --prefix client",
-    "client-install": "npm install --prefix client",
+    "build": "npm run build --prefix client",
+    "install": "npm install --prefix client",
     "start": "node server",
     "server": "nodemon server",
     "client": "npm start --prefix client",
