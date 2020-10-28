@@ -23,40 +23,47 @@ class Grid extends Component {
         shape: "capsule",
       },
     };
-    const orderData = this.props.orderDetails.map((order) => {
-      const status = order.orderBuyerStatus.toLowerCase();
-      let tagSupplier = [];
-      let tags = [];
-      tags.push(!order.isBYOS ? "market" : null);
-      tags.push(order.isPendingVendorOnboarding ? "1st" : null);
-      tags = tags.filter((tag) => tag);
-      tagSupplier = tags.map((tag, i) => (
-        <Tag
-          key={i}
-          tagStyle={tagDetails[tag].style}
-          shape={tagDetails[tag].shape}
-        >
-          {tag}
-        </Tag>
-      ));
+    //filter the orders based on the combo box then show all the data in grid
+    const orderData = this.props.gridData.orderDetails
+      .filter(
+        (order) =>
+          order[this.props.gridData.filterBy.type] ===
+          this.props.gridData.filterBy.value
+      )
+      .map((order) => {
+        const status = order.orderBuyerStatus.toLowerCase();
+        let tagSupplier = [];
+        let tags = [];
+        tags.push(!order.isBYOS ? "market" : null);
+        tags.push(order.isPendingVendorOnboarding ? "1st" : null);
+        tags = tags.filter((tag) => tag);
+        tagSupplier = tags.map((tag, i) => (
+          <Tag
+            key={i}
+            tagStyle={tagDetails[tag].style}
+            shape={tagDetails[tag].shape}
+          >
+            {tag}
+          </Tag>
+        ));
 
-      return (
-        <div key={order.id} className="grid-table-row">
-          <div className="grid-table-cell" data-title="Status">
-            <Tag tagStyle={tagDetails[status].style}>{status}</Tag>
+        return (
+          <div key={order.id} className="grid-table-row">
+            <div className="grid-table-cell" data-title="Status">
+              <Tag tagStyle={tagDetails[status].style}>{status}</Tag>
+            </div>
+            <div className="grid-table-cell" data-title="Delivery Day">
+              {order.deliveryDay}
+            </div>
+            <div className="grid-table-cell" data-title="Supplier">
+              {order.vendorName} {tagSupplier}
+            </div>
+            <div className="grid-table-cell" data-title="Total">
+              {order.total}
+            </div>
           </div>
-          <div className="grid-table-cell" data-title="Delivery Day">
-            {order.deliveryDay}
-          </div>
-          <div className="grid-table-cell" data-title="Supplier">
-            {order.vendorName} {tagSupplier}
-          </div>
-          <div className="grid-table-cell" data-title="Total">
-            {order.total}
-          </div>
-        </div>
-      );
-    });
+        );
+      });
     return (
       <div className="grid-table">
         <div className="grid-table-row">
@@ -72,12 +79,12 @@ class Grid extends Component {
 }
 
 Grid.propTypes = {
-  orderDetails: propTypes.array.isRequired,
+  gridData: propTypes.object.isRequired,
   getOrderDetails: propTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  orderDetails: state.orderDetails.orderDetails,
+  gridData: state.orderDetails,
 });
 
 // const fn = connect(mapStateToProps, { getOrderDetails }); //mapDispatchToProps getOrderDetails: getOrderDetails -- object //mapStateToProp function
