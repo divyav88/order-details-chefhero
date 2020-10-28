@@ -25,7 +25,7 @@ export const getOrderDetails = () => async (dispatch) => {
       payload: {
         orderDetails: orderDetails,
         filterBy: {
-          type: "NONE",
+          value: "NONE",
         },
       },
     });
@@ -33,3 +33,10 @@ export const getOrderDetails = () => async (dispatch) => {
   } finally {
   }
 };
+
+export const filterOrderDetails = (filterBy) => ({
+  type: FILTER_BY,
+  payload: {
+    filterBy, //filterBy: filterBy
+  },
+});

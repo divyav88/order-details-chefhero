@@ -7,7 +7,6 @@ export const logger = (store) => (next) => (action) => {
     `${today.toISOString()}: Dispatching... ${JSON.stringify(action)}`
   );
   let result = next(action);
-  console.log("Next state", store.getSate());
   return result;
 };
 

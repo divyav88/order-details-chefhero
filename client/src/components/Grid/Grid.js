@@ -27,8 +27,9 @@ class Grid extends Component {
     const orderData = this.props.gridData.orderDetails
       .filter(
         (order) =>
+          this.props.gridData.filterBy.value === "NONE" ||
           order[this.props.gridData.filterBy.type] ===
-          this.props.gridData.filterBy.value
+            this.props.gridData.filterBy.value
       )
       .map((order) => {
         const status = order.orderBuyerStatus.toLowerCase();

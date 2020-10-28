@@ -1,28 +1,50 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import propTypes from "prop-types";
+import { filterOrderDetails } from "../../store/actions/orderDetailsAction";
 import "./Filter.scss";
 
 class Filter extends Component {
   render() {
+    const filterChange = (e) => {
+      this.props.filterOrderDetails({
+        type: e.target.id,
+        value: e.target.value,
+      });
+    };
+
+    const resetFilter = (e) => {
+      e.target.value = "NONE";
+      filterChange(e);
+    };
+
+    const uniqueSuppliers = this.props.gridData.orderDetails.map(
+      (order) => order.vendorName
+    );
+    const suppliersArray = [...new Set(uniqueSuppliers)];
+
+    const suppliers = suppliersArray.map((supplier) => (
+      <option key={supplier} value={supplier}>
+        {supplier}
+      </option>
+    ));
+
     return (
       <div className="filter-container">
         <div className="filter">
           <span className="display-text">Supplier</span>
-          <select className="dropdown">
-            <option value="0">All Suppliers</option>
-            <option value="1">Audi</option>
-            <option value="2">BMW</option>
-            <option value="3">Citroen</option>
-            <option value="4">Ford</option>
-            <option value="5">Honda</option>
-            <option value="6">Jaguar</option>
-            <option value="7">Land Rover</option>
-            <option value="8">Mercedes</option>
-            <option value="9">Mini</option>
-            <option value="10">Nissan</option>
-            <option value="11">Toyota</option>
-            <option value="12">Volvo</option>
+          <select
+            id="vendorName"
+            className="dropdown"
+            onChange={filterChange}
+            value={this.props.gridData.filterBy.value}
+          >
+            <option key="NONE" value="NONE">
+              All Suppliers
+            </option>
+            {suppliers}
           </select>
-          <button className="reset-btn">
+          <button className="reset-btn" onClick={resetFilter}>
             <i className="fa fa-close"></i> Reset Filters
           </button>
         </div>
@@ -31,4 +53,13 @@ class Filter extends Component {
   }
 }
 
-export default Filter;
+Filter.propTypes = {
+  gridData: propTypes.object.isRequired,
+  filterOrderDetails: propTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  gridData: state.orderDetails,
+});
+
+export default connect(mapStateToProps, { filterOrderDetails })(Filter);

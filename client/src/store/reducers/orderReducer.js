@@ -2,7 +2,7 @@ import { GET_ORDER_DETAILS, FILTER_BY } from "../actions";
 
 const initialSate = {
   orderDetails: [],
-  filterBy: { type: "NONE" },
+  filterBy: { value: "NONE" },
 };
 
 const OrderDetailsReducer = (state = initialSate, action) => {
