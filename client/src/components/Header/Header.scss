@@ -6,6 +6,10 @@
 }
 
 .logo-chefhero {
-  width: 10%;
-  height: 10%;
+  width: 12%;
+  height: 12%;
+  @media (max-width: 800px) {
+    width: 25%;
+    height: 25%;
+  }
 }

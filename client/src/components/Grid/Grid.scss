@@ -1,3 +1,5 @@
+@import "../../utils/variables.scss";
+
 .grid-table {
   display: grid;
   margin: 60px auto;
@@ -5,7 +7,9 @@
   align-items: top;
   //background: rgba(#fafafa, 0.9);
   border-radius: 0.5rem;
-  color: rgb(4, 69, 71);
+  color: #044547;
+  font-family: $fontFamily;
+
   @media (max-width: 800px) {
     background: transparent;
     grid-row-gap: 2rem;
@@ -19,7 +23,7 @@
     @media (max-width: 800px) {
       grid-template-columns: 3fr 1fr 3fr;
       //background: rgba(#fafafa, 0.9);
-      box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
+      box-shadow: 0 5px 15px 0 #00000033;
       border-radius: 0.5rem;
     }
 
@@ -37,8 +41,8 @@
       font-weight: bold;
       text-shadow: 0 2px 1px #fff;
       padding-bottom: 10px;
-      box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.2);
-      text-transform: uppercase;
+      box-shadow: 0 5px 15px 0 #00000033;
+      text-transform: $textCase;
 
       @media (max-width: 800px) {
         display: none;
@@ -52,9 +56,9 @@
       padding: 0 0 1rem 0;
       text-align: center;
     }
-    &:not(:last-child) {
-      //border-right: 1px solid #ddd;
-    }
+    // &:not(:last-child) {
+    //   //border-right: 1px solid #ddd;
+    // }
     @media (max-width: 800px) {
       &:before {
         content: attr(data-title);
@@ -64,6 +68,8 @@
         padding: 0.75rem;
         margin-bottom: 0.75rem;
         font-size: 1rem;
+        text-transform: $textCase;
+        white-space: nowrap;
       }
       &:first-child {
         grid-column-start: 1;

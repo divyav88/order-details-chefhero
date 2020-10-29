@@ -3,6 +3,7 @@ import propTypes from "prop-types";
 import { connect } from "react-redux";
 import { getOrderDetails } from "../../store/actions";
 import Tag from "../Tag";
+import { dateFormat } from "../../utils/utils";
 import "./Grid.scss";
 
 class Grid extends Component {
@@ -12,14 +13,15 @@ class Grid extends Component {
   }
   render() {
     const tagDetails = {
-      paid: { style: { background: "#b0fcc8" }, shape: "capsule" },
-      delivered: { style: { background: "#bfaff8" }, shape: "capsule" },
+      //b0fcc8//a2f887
+      paid: { style: { background: "#9ccfbe" }, shape: "capsule" },
+      delivered: { style: { background: "#beaff1" }, shape: "capsule" },
       market: {
-        style: { background: "#000000", color: "#ffffff" },
+        style: { background: "#3a3838", color: "#ffffff" },
         shape: "default",
       },
       "1st": {
-        style: { background: "#f1f8af", color: "#000000" },
+        style: { background: "#ecf59c", color: "#000000" },
         shape: "capsule",
       },
     };
@@ -54,13 +56,13 @@ class Grid extends Component {
               <Tag tagStyle={tagDetails[status].style}>{status}</Tag>
             </div>
             <div className="grid-table-cell" data-title="Delivery Day">
-              {order.deliveryDay}
+              {dateFormat(order.deliveryDay)}
             </div>
             <div className="grid-table-cell" data-title="Supplier">
               {order.vendorName} {tagSupplier}
             </div>
             <div className="grid-table-cell" data-title="Total">
-              {order.total}
+              {order.total || ""}
             </div>
           </div>
         );
