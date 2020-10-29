@@ -43,7 +43,7 @@
       padding-bottom: 10px;
       box-shadow: 0 5px 15px 0 #00000033;
       text-transform: $textCase;
-
+      font-size: $fontSize;
       @media (max-width: 800px) {
         display: none;
       }
@@ -70,6 +70,7 @@
         font-size: 1rem;
         text-transform: $textCase;
         white-space: nowrap;
+        font-size: $fontSize;
       }
       &:first-child {
         grid-column-start: 1;

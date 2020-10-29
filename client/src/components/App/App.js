@@ -6,6 +6,7 @@ import "./App.scss";
 import Header from "../Header";
 import Filter from "../Filter";
 import Grid from "../Grid";
+import Spinner from "../Spinner/Spinner";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Grid />
         </div>
       </div>
+      <Spinner />
     </Provider>
   );
 }

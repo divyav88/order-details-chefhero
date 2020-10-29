@@ -1,8 +1,10 @@
 import { GET_ORDER_DETAILS, FILTER_BY } from "./types";
+import { setSpinner } from "./spinnerAction";
 import axios from "axios";
 
 export const getOrderDetails = () => async (dispatch) => {
   try {
+    dispatch(setSpinner(true));
     const orderDetailsUrl = "https://chefhero.free.beeceptor.com/";
     const orderResponse = await axios.get(orderDetailsUrl);
 
@@ -30,7 +32,9 @@ export const getOrderDetails = () => async (dispatch) => {
       },
     });
   } catch (err) {
+    dispatch(setSpinner(false));
   } finally {
+    dispatch(setSpinner(false));
   }
 };
 
