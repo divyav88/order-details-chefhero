@@ -62,7 +62,7 @@ class Grid extends Component {
               {order.vendorName} {tagSupplier}
             </div>
             <div className="grid-table-cell" data-title="Total">
-              {order.total || ""}
+              {(order.total && `$${order.total}`) || ""}
             </div>
           </div>
         );
