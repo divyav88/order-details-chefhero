@@ -16,7 +16,7 @@ export const crashReporter = (store) => (next) => (action) => {
     return next(action);
   } catch (err) {
     console.log(
-      `${Date.now()}: Error logged: ${err} | action: ${action} | state: ${store.getSate()}`
+      `${Date.now()}: Error logged: ${err} | action: ${action} | state: ${store.getState()}`
     );
   }
 };

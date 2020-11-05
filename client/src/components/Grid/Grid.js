@@ -39,7 +39,7 @@ class Grid extends Component {
         let tags = [];
         tags.push(!order.isBYOS ? "market" : null);
         tags.push(order.isPendingVendorOnboarding ? "1st" : null);
-        tags = tags.filter((tag) => tag);
+        tags = tags.filter((tag) => tag); //removing null or undefined values
         tagSupplier = tags.map((tag, i) => (
           <Tag
             key={i}

@@ -23,6 +23,10 @@ class Filter extends Component {
     );
     const suppliersArray = [...new Set(uniqueSuppliers)];
 
+    //instead of below code Set can be used.
+    // const suppliersArray = uniqueSuppliers.filter((item, index)) => {
+    //   return uniqueSuppliers.indexOf(item) == index;
+    // }
     const suppliers = suppliersArray.map((supplier) => (
       <option key={supplier} value={supplier}>
         {supplier}
